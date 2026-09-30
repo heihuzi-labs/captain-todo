@@ -99,3 +99,6 @@ Thumbs.db
 
 # Claude Code settings
 .claude/settings.local.json
+# 本机数据和安装包，不进仓库
+*.db
+*.dmg
