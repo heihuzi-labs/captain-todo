@@ -1,0 +1,73 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag, for example v0.2.1"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build ${{ matrix.name }} release
+    runs-on: ${{ matrix.platform }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS
+            platform: macos-latest
+            args: ""
+          - name: Windows
+            platform: windows-latest
+            args: "--bundles nsis"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Install frontend dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build and publish release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: ${{ matrix.args }}
+          tagName: ${{ inputs.tag || github.ref_name }}
+          releaseName: 船长待办 ${{ inputs.tag || github.ref_name }}
+          releaseBody: |
+            ## 船长待办 ${{ inputs.tag || github.ref_name }}
+
+            - 项目支持拖拽排序并持久化
+            - 删除项目需要输入项目名确认
+            - 应用更名为船长待办 / CaptainTodo
+            - 自动迁移旧 ZeTodo 本地 SQLite 数据
+            - 新增 GitHub Actions CI
+          releaseDraft: false
+          prerelease: false

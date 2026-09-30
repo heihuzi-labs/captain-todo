@@ -1,0 +1,48 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "CaptainTodo",
+  "version": "0.2.2",
+  "identifier": "com.heihuzicity.captaintodo",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "船长待办 - 冒险任务看板",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 900,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "center": true,
+        "decorations": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "shortDescription": "本地优先的看板式任务管理工具",
+    "longDescription": "船长待办是一款现代化的看板式任务管理桌面应用，支持多项目管理、拖拽排序和本地 SQLite 持久化。",
+    "category": "Productivity",
+    "copyright": "Copyright © 2026 CaptainTodo",
+    "macOS": {
+      "bundleName": "船长待办"
+    }
+  }
+}

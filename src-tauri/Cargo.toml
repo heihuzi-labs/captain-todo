@@ -1,0 +1,50 @@
+[package]
+name = "captaintodo"
+version = "0.2.2"
+description = "船长待办 - 本地优先的看板式任务管理桌面应用"
+authors = ["heihuzicity"]
+license = "MIT"
+repository = "https://github.com/heihuzicity-tech/CaptainTodo"
+edition = "2021"
+rust-version = "1.85.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "captaintodo_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+# Tauri 核心
+tauri = { version = "2", features = [] }
+tauri-plugin-log = "2"
+
+# 序列化
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# 日志
+log = "0.4"
+
+# SQLite 数据库
+rusqlite = { version = "0.31", features = ["bundled"] }
+
+# 时间处理
+chrono = { version = "0.4", features = ["serde"] }
+
+# UUID 生成
+uuid = { version = "1", features = ["v4", "serde"] }
+
+# 错误处理
+thiserror = "2.0"
+
+# 异步运行时
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
