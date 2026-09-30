@@ -51,4 +51,4 @@ Architecture, data flow and conventions are in the [project notes](docs/椤圭洰璇
 
 ---
 
-<sub>Part of the Captain series from [heihuzi-labs](https://github.com/heihuzi-labs): [Captain Crew](https://github.com/heihuzi-labs/captain-crew) 路 [Captain Kube](https://github.com/heihuzi-labs/captain-kube) 路 [Captain Ops](https://github.com/heihuzi-labs/captain-ops) 路 **Captain Todo**</sub>
+<sub>Part of the Captain series from [heihuzi-labs](https://github.com/heihuzi-labs): [Captain Agents](https://github.com/heihuzi-labs/captain-agents) 路 [Captain Kube](https://github.com/heihuzi-labs/captain-kube) 路 [Captain Ops](https://github.com/heihuzi-labs/captain-ops) 路 **Captain Todo**</sub>
